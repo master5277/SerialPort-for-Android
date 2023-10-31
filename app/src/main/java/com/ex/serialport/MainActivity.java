@@ -24,6 +24,7 @@ import com.ex.serialport.adapter.SpAdapter;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import android_serialport_api.SerialPortFinder;
@@ -340,13 +341,17 @@ public class MainActivity extends AppCompatActivity {
         给发送按钮绑定监听器
          */
         btSend.setOnClickListener(new View.OnClickListener() {
+            SimpleDateFormat sDateFormat = new SimpleDateFormat("hh:mm:ss.SSS");
             @Override
             public void onClick(View v) {
                 if (radioGroup.getCheckedRadioButtonId() == R.id.radioButton1) {
                     if (edInput.getText().toString().length() > 0) {
                         if (serialHelper.isOpen()) {
                             serialHelper.sendTxt(edInput.getText().toString());
-
+                            logListAdapter.addData(sDateFormat.format(new Date()) + " Tx:==>" + edInput.getText().toString());
+                            if (logListAdapter.getData() != null && logListAdapter.getData().size() > 0) {
+                                recy.smoothScrollToPosition(logListAdapter.getData().size());//划到最底部，使得数据一直出现
+                            }
                         } else {
                             Toast.makeText(getBaseContext(), "串口没打开", Toast.LENGTH_SHORT).show();
                         }
@@ -356,8 +361,11 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     if (edInput.getText().toString().length() > 0) {
                         if (serialHelper.isOpen()) {
-
                             serialHelper.sendHex(edInput.getText().toString());
+                            logListAdapter.addData(sDateFormat.format(new Date()) + " Tx:==>" + edInput.getText().toString());
+                            if (logListAdapter.getData() != null && logListAdapter.getData().size() > 0) {
+                                recy.smoothScrollToPosition(logListAdapter.getData().size());
+                            }
                         } else {
                             Toast.makeText(getBaseContext(), "串口没打开", Toast.LENGTH_SHORT).show();
                         }
