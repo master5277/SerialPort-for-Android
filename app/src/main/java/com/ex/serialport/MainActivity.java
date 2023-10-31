@@ -346,6 +346,7 @@ public class MainActivity extends AppCompatActivity {
                     if (edInput.getText().toString().length() > 0) {
                         if (serialHelper.isOpen()) {
                             serialHelper.sendTxt(edInput.getText().toString());
+
                         } else {
                             Toast.makeText(getBaseContext(), "串口没打开", Toast.LENGTH_SHORT).show();
                         }
@@ -367,14 +368,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
+    //这是 Android 应用程序中的一个方法，通常在 Activity 类中定义，用于创建并填充菜单（Menu）的内容。
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        //创建一个 MenuInflater 对象 inflater，用于从 XML 文件中加载菜单资源。
         MenuInflater inflater = getMenuInflater();
+        //使用 inflater 对象加载指定的菜单资源。这里的 R.menu.main 表示要加载的菜单资源的标识符。
+        // 通常，菜单资源会以 XML 文件的形式存储在应用的 res/menu 目录下。
+        // inflate 方法会将 XML 文件中定义的菜单项添加到传入的 menu 对象中。
         inflater.inflate(R.menu.main, menu);
         return true;
     }
 
+    /*
+    这段代码的作用是在用户选择了特定菜单项（"menu_clean"）时，执行与清理操作相关的逻辑。
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
