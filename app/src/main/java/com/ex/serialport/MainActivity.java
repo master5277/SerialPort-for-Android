@@ -350,8 +350,10 @@ public class MainActivity extends AppCompatActivity {
                             if (edInput.getText().toString().startsWith("AT"))
                             {
                                 serialHelper.sendTxt(edInput.getText().toString().concat("\n"));
+                                logListAdapter.addData(sDateFormat.format(new Date())+" Tx:==>"+edInput.getText().toString().concat("\n"));
                             } else if (edInput.getText().toString().equals("+++")) {
                                 serialHelper.sendTxt(edInput.getText().toString());
+                                logListAdapter.addData(sDateFormat.format(new Date()) + " Tx:==>" + edInput.getText().toString());
                                 try {
                                     Thread.sleep(1500);
                                 }
@@ -360,11 +362,12 @@ public class MainActivity extends AppCompatActivity {
                                     e.printStackTrace();
                                 }
                                 serialHelper.sendTxt("atk");
+                                logListAdapter.addData(sDateFormat.format(new Date()) + " Tx:==>" + "atk");
                             }else
                             {
                                 serialHelper.sendTxt(edInput.getText().toString());
+                                logListAdapter.addData(sDateFormat.format(new Date()) + " Tx:==>" + edInput.getText().toString());
                             }
-                            logListAdapter.addData(sDateFormat.format(new Date()) + " Tx:==>" + edInput.getText().toString());
                             if (logListAdapter.getData() != null && logListAdapter.getData().size() > 0) {
                                 recy.smoothScrollToPosition(logListAdapter.getData().size());//划到最底部，使得数据一直出现
                             }
@@ -377,8 +380,27 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     if (edInput.getText().toString().length() > 0) {
                         if (serialHelper.isOpen()) {
-                            serialHelper.sendHex(edInput.getText().toString());
-                            logListAdapter.addData(sDateFormat.format(new Date()) + " Tx:==>" + edInput.getText().toString());
+                            if (edInput.getText().toString().startsWith("AT"))
+                            {
+                                serialHelper.sendHex(edInput.getText().toString().concat("\n"));
+                                logListAdapter.addData(sDateFormat.format(new Date())+" Tx:==>" + edInput.getText().toString().concat("\n"));
+                            } else if (edInput.getText().toString().equals("+++")) {
+                                serialHelper.sendHex(edInput.getText().toString());
+                                logListAdapter.addData(sDateFormat.format(new Date()) + " Tx:==>" + edInput.getText().toString());
+                                try {
+                                    Thread.sleep(1500);
+                                }
+                                catch (InterruptedException e)
+                                {
+                                    e.printStackTrace();
+                                }
+                                serialHelper.sendHex("atk");
+                                logListAdapter.addData(sDateFormat.format(new Date()) + " Tx:==>" + "atk");
+                            }else
+                            {
+                                serialHelper.sendHex(edInput.getText().toString());
+                                logListAdapter.addData(sDateFormat.format(new Date()) + " Tx:==>" + edInput.getText().toString());
+                            }
                             if (logListAdapter.getData() != null && logListAdapter.getData().size() > 0) {
                                 recy.smoothScrollToPosition(logListAdapter.getData().size());
                             }
@@ -386,7 +408,7 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(getBaseContext(), "串口没打开", Toast.LENGTH_SHORT).show();
                         }
                     } else {
-                        Toast.makeText(getBaseContext(), "先填数据吧", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getBaseContext(), "请先填写数据", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
