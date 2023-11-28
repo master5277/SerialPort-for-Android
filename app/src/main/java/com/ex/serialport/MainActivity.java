@@ -364,7 +364,6 @@ public class MainActivity extends AppCompatActivity {
                             {
                                 serialHelper.sendTxt(edInput.getText().toString());
                             }
-
                             logListAdapter.addData(sDateFormat.format(new Date()) + " Tx:==>" + edInput.getText().toString());
                             if (logListAdapter.getData() != null && logListAdapter.getData().size() > 0) {
                                 recy.smoothScrollToPosition(logListAdapter.getData().size());//划到最底部，使得数据一直出现
