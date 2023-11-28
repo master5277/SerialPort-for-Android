@@ -347,7 +347,24 @@ public class MainActivity extends AppCompatActivity {
                 if (radioGroup.getCheckedRadioButtonId() == R.id.radioButton1) {
                     if (edInput.getText().toString().length() > 0) {
                         if (serialHelper.isOpen()) {
-                            serialHelper.sendTxt(edInput.getText().toString());
+                            if (edInput.getText().toString().startsWith("AT"))
+                            {
+                                serialHelper.sendTxt(edInput.getText().toString().concat("\n"));
+                            } else if (edInput.getText().toString().equals("+++")) {
+                                serialHelper.sendTxt(edInput.getText().toString());
+                                try {
+                                    Thread.sleep(1500);
+                                }
+                                catch (InterruptedException e)
+                                {
+                                    e.printStackTrace();
+                                }
+                                serialHelper.sendTxt("atk");
+                            }else
+                            {
+                                serialHelper.sendTxt(edInput.getText().toString());
+                            }
+
                             logListAdapter.addData(sDateFormat.format(new Date()) + " Tx:==>" + edInput.getText().toString());
                             if (logListAdapter.getData() != null && logListAdapter.getData().size() > 0) {
                                 recy.smoothScrollToPosition(logListAdapter.getData().size());//划到最底部，使得数据一直出现
