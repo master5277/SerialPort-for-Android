@@ -30,13 +30,12 @@ public class SerialPortFinder {//定义 SerialPortFinder 类：查找可用的�
 
     public class Driver {
 		//Driver 类表示一个串口驱动，包含驱动名称和设备根目录等信息。该类还维护了该驱动下的串口设备列表。
-        public Driver(String name, String root) {
-            mDriverName = name;
-            mDeviceRoot = root;
-        }
-
         private String mDriverName;
         private String mDeviceRoot;
+		public Driver(String name, String root) {
+			mDriverName = name;
+			mDeviceRoot = root;
+		}
 		//mDrivers：表示所有已发现的串口驱动列表
 		//mDevices: 表示的是某个串口驱动下的串口设备列表。
         Vector<File> mDevices = null;
@@ -96,8 +95,6 @@ public class SerialPortFinder {//定义 SerialPortFinder 类：查找可用的�
 			//它会读取一行文本内容并返回为一个字符串。如果已经读取到文件的末尾，它会返回 null，表示没有更多的内容可读。
 			//在代码中，每次循环执行这行代码，都会读取 r 中的下一行文本，并将其存储在变量 l 中。这个循环会一直执行，直到读取到文件末尾为止。这个文本行通常包含有关设备驱动程序的信息。
 			while((l = r.readLine()) != null) {
-				// Issue 3:
-				// Since driver name may contain spaces, we do not extract driver name with split()
 				//l：这是先前从文件中读取的一行文本，它包含有关设备驱动程序的信息。
 				//.substring(0, 0x15)：这是一个字符串截取操作，它从文本行的索引 0（起始位置）开始，截取到索引 0x15（十进制的21）之前的字符。这个操作实际上截取了一个固定长度的子字符串，包含了驱动程序的名称。
 				//.trim()：这是一个字符串修剪操作，它用于去除字符串的前导和尾随空格（包括空格、制表符等）。这是为了确保驱动程序名称的前后不包含多余的空格。
@@ -105,7 +102,7 @@ public class SerialPortFinder {//定义 SerialPortFinder 类：查找可用的�
 				//l：这是先前从文件中读取的一行文本，它包含了有关设备驱动程序的信息。
 				//.split(" +")：这是一个字符串拆分操作，它将字符串 l 拆分成多个子字符串，并且拆分的依据是一个或多个连续的空格字符。这个正则表达式模式 " +" 表示匹配一个或多个空格字符。
 				//拆分后的子字符串会存储在数组 w 中，每个子字符串代表了一部分信息。这种拆分通常用于解析文本数据，特别是当数据的各个部分由空格或其他分隔符分隔时。
-				String[] w = l.split(" +");
+				String[] w = l.split(" +");//正则表达式
 				//w.length >= 5：这个条件检查数组 w 的长度是否至少为 5，以确保数组包含足够的元素供后续处理。如果数组长度小于 5，那么就没有足够的信息来表示一个有效的设备驱动程序。
 				//w[w.length-1].equals("serial")：这个条件检查数组 w 的最后一个元素是否等于字符串 "serial"。这是为了确定该驱动程序是否是串口设备的驱动程序。只有当最后一个元素为 "serial" 时，才会继续处理这个驱动程序。
 				//Log.d(TAG, "Found new driver " + drivername + " on " + w[w.length-4])：这是一个调试日志输出语句，它将找到的驱动程序的名称 drivername 和路径信息 w[w.length-4] 记录到 Android 的 Logcat 中，以便开发人员进行调试和跟踪。

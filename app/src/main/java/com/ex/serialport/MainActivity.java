@@ -356,7 +356,7 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(getBaseContext(), "串口没打开", Toast.LENGTH_SHORT).show();
                         }
                     } else {
-                        Toast.makeText(getBaseContext(), "先填数据吧", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getBaseContext(), "请填写数据", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     if (edInput.getText().toString().length() > 0) {
