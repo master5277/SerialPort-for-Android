@@ -355,7 +355,7 @@ public class MainActivity extends AppCompatActivity {
                                 serialHelper.sendTxt(edInput.getText().toString());
                                 logListAdapter.addData(sDateFormat.format(new Date()) + " Tx:==>" + edInput.getText().toString());
                                 try {
-                                    Thread.sleep(1500);
+                                    Thread.sleep(1800);
                                 }
                                 catch (InterruptedException e)
                                 {
@@ -388,7 +388,7 @@ public class MainActivity extends AppCompatActivity {
                                 serialHelper.sendHex(edInput.getText().toString());
                                 logListAdapter.addData(sDateFormat.format(new Date()) + " Tx:==>" + edInput.getText().toString());
                                 try {
-                                    Thread.sleep(1500);
+                                    Thread.sleep(1800);
                                 }
                                 catch (InterruptedException e)
                                 {

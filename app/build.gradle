@@ -4,7 +4,7 @@ android {
     compileSdkVersion 32
     defaultConfig {
         applicationId "com.ex.serialport"
-        minSdkVersion 14
+        minSdkVersion 17
         targetSdkVersion 32
         versionCode 1
         versionName "1.0"
@@ -26,4 +26,5 @@ dependencies {
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.7'
 //    implementation project(path: ':serialport')
     implementation 'io.github.xmaihh:serialport:2.1.1'
+    implementation 'com.google.android.material:material:1.9.0'
 }
