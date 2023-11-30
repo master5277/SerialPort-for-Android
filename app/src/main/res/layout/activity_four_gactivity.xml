@@ -6,4 +6,194 @@
     android:layout_height="match_parent"
     tools:context=".FourGActivity">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/fourgrecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/fourgradioGroup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <RadioGroup
+        android:id="@+id/fourgradioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x8"
+        android:layout_marginBottom="@dimen/x8"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/fourgsp_serial"
+        app:layout_constraintStart_toStartOf="parent">
+        <RadioButton
+            android:id="@+id/fourgradioButton1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="发送Text" />
+
+        <RadioButton
+            android:id="@+id/fourgradioButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_weight="1"
+            android:checked="true"
+            android:text="发送Hex" />
+    </RadioGroup>
+    <TextView
+        android:id="@+id/fourgtv_serial"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x8"
+        android:text="串口号:"
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/fourgsp_serial"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/fourgsp_serial" />
+    <Spinner
+        android:id="@+id/fourgsp_serial"
+        android:layout_width="@dimen/x100"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x8"
+        android:layout_marginBottom="@dimen/x8"
+        app:layout_constraintBottom_toTopOf="@+id/fourgsp_databits"
+        app:layout_constraintStart_toEndOf="@+id/fourgtv_serial" />
+    <TextView
+        android:id="@+id/fourgtv_baudrate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x8"
+        android:text="波特率:"
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/fourgsp_serial"
+        app:layout_constraintStart_toEndOf="@+id/fourgsp_serial"
+        app:layout_constraintTop_toTopOf="@+id/fourgsp_serial" />
+
+    <Spinner
+        android:id="@+id/fourgsp_baudrate"
+        android:layout_width="@dimen/x100"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/x8"
+        app:layout_constraintBottom_toBottomOf="@+id/fourgsp_serial"
+        app:layout_constraintStart_toEndOf="@+id/fourgtv_baudrate"
+        app:layout_constraintTop_toTopOf="@+id/fourgsp_serial" />
+    <TextView
+        android:id="@+id/fourgtv_databits"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x8"
+        android:text="数据位:"
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/fourgsp_databits"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/fourgsp_databits" />
+
+    <Spinner
+        android:id="@+id/fourgsp_databits"
+        android:layout_width="@dimen/x100"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x8"
+        android:layout_marginBottom="@dimen/x8"
+        app:layout_constraintBottom_toTopOf="@+id/fourgsp_stopbits"
+        app:layout_constraintStart_toEndOf="@+id/fourgtv_databits" />
+    <TextView
+        android:id="@+id/fourgtv_parity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x8"
+        android:text="校验位:"
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/fourgsp_databits"
+        app:layout_constraintStart_toEndOf="@+id/fourgsp_databits"
+        app:layout_constraintTop_toTopOf="@+id/fourgsp_databits" />
+
+    <Spinner
+        android:id="@+id/fourgsp_parity"
+        android:layout_width="@dimen/x100"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/x8"
+        app:layout_constraintBottom_toBottomOf="@+id/fourgsp_databits"
+        app:layout_constraintStart_toEndOf="@+id/fourgtv_parity"
+        app:layout_constraintTop_toTopOf="@+id/fourgsp_databits" />
+    <TextView
+        android:id="@+id/fourgtv_stopbits"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x8"
+        android:text="停止位:"
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/fourgsp_stopbits"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/fourgsp_stopbits" />
+
+    <Spinner
+        android:id="@+id/fourgsp_stopbits"
+        android:layout_width="@dimen/x100"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x8"
+        android:layout_marginBottom="@dimen/x8"
+        app:layout_constraintBottom_toTopOf="@+id/fourgbtn_open"
+        app:layout_constraintStart_toEndOf="@+id/fourgtv_stopbits" />
+    <TextView
+        android:id="@+id/fourgtv_flowcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x8"
+        android:gravity="right"
+        android:text="    流控:"
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/fourgsp_stopbits"
+        app:layout_constraintStart_toEndOf="@+id/fourgsp_stopbits"
+        app:layout_constraintTop_toTopOf="@+id/fourgsp_stopbits" />
+
+    <Spinner
+        android:id="@+id/fourgsp_flowcon"
+        android:layout_width="@dimen/x100"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/x8"
+        app:layout_constraintBottom_toBottomOf="@+id/fourgsp_stopbits"
+        app:layout_constraintStart_toEndOf="@+id/fourgtv_flowcon"
+        app:layout_constraintTop_toTopOf="@+id/fourgsp_stopbits" />
+    <EditText
+        android:id="@+id/fourged_input"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/x50"
+        android:layout_marginStart="@dimen/x8"
+        android:layout_marginLeft="@dimen/x8"
+        android:layout_marginTop="@dimen/x8"
+        android:layout_marginEnd="@dimen/x8"
+        android:layout_marginRight="@dimen/x8"
+        android:layout_marginBottom="@dimen/x8"
+        android:maxLines="1"
+        android:text="123456"
+        android:textSize="@dimen/sp_14"
+        app:layout_constraintBottom_toBottomOf="@+id/fourgbtn_send"
+        app:layout_constraintEnd_toStartOf="@+id/fourgbtn_open"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/fourgbtn_send" />
+    <Button
+        android:id="@+id/fourgbtn_open"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/x8"
+        android:layout_marginBottom="@dimen/x8"
+        android:text="开启串口"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/fourgbtn_send" />
+
+    <Button
+        android:id="@+id/fourgbtn_send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/x8"
+        android:layout_marginBottom="@dimen/x8"
+        android:text="发送"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
