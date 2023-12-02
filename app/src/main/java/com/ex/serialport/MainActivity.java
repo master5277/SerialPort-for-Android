@@ -347,10 +347,10 @@ public class MainActivity extends AppCompatActivity {
                 if (radioGroup.getCheckedRadioButtonId() == R.id.radioButton1) {
                     if (edInput.getText().toString().length() > 0) {
                         if (serialHelper.isOpen()) {
-                            if (edInput.getText().toString().startsWith("AT"))
+                            if (edInput.getText().toString().startsWith("AT")||edInput.getText().toString().startsWith("at"))
                             {
-                                serialHelper.sendTxt(edInput.getText().toString().concat("\n"));
-                                logListAdapter.addData(sDateFormat.format(new Date())+" Tx:==>"+edInput.getText().toString().concat("\n"));
+                                serialHelper.sendTxt(edInput.getText().toString().concat("\r\n"));
+                                logListAdapter.addData(sDateFormat.format(new Date())+" Tx:==>"+edInput.getText().toString().concat("\r\n"));
                             } else if (edInput.getText().toString().equals("+++")) {
                                 serialHelper.sendTxt(edInput.getText().toString());
                                 logListAdapter.addData(sDateFormat.format(new Date()) + " Tx:==>" + edInput.getText().toString());
@@ -380,10 +380,10 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     if (edInput.getText().toString().length() > 0) {
                         if (serialHelper.isOpen()) {
-                            if (edInput.getText().toString().startsWith("AT"))
+                            if (edInput.getText().toString().startsWith("AT")||edInput.getText().toString().startsWith("at"))
                             {
-                                serialHelper.sendHex(edInput.getText().toString().concat("\n"));
-                                logListAdapter.addData(sDateFormat.format(new Date())+" Tx:==>" + edInput.getText().toString().concat("\n"));
+                                serialHelper.sendHex(edInput.getText().toString().concat("\r\n"));
+                                logListAdapter.addData(sDateFormat.format(new Date())+" Tx:==>" + edInput.getText().toString().concat("\r\n"));
                             } else if (edInput.getText().toString().equals("+++")) {
                                 serialHelper.sendHex(edInput.getText().toString());
                                 logListAdapter.addData(sDateFormat.format(new Date()) + " Tx:==>" + edInput.getText().toString());

@@ -67,6 +67,7 @@ public class FourGActivity extends AppCompatActivity {
     //XOFF（Transmit Off）：发送端发送XOFF字符以指示接收端停止接收数据，直到再次收到XON字符。
     //当使用软件流控位时，发送端和接收端使用这些控制字符来控制数据的流动，从而避免数据缓冲区溢出。
     private Spinner spFlowcon;
+    private int flag=0;//flag为0时就是透传模式
 
     //页面销毁
     @Override
@@ -329,6 +330,7 @@ public class FourGActivity extends AppCompatActivity {
                 }
             }
         });
+        
         btSend.setOnClickListener(new View.OnClickListener() {
             SimpleDateFormat sDateFormat = new SimpleDateFormat("hh:mm:ss.SSS");
             @Override
@@ -336,14 +338,207 @@ public class FourGActivity extends AppCompatActivity {
                 if (radioGroup.getCheckedRadioButtonId() == R.id.fourgradioButton1) {
                     if (edInput.getText().toString().length() > 0) {
                         if (serialHelper.isOpen()) {
-                            if (edInput.getText().toString().equals("sendmessage"))
+                            if (edInput.getText().toString().equals("transparent"))
+                            {
+                                if (flag==0)
+                                {
+                                }
+                                else
+                                {
+                                    try {
+                                        Thread.sleep(3000);
+                                    }
+                                    catch (InterruptedException e)
+                                    {
+                                        e.printStackTrace();
+                                    }
+                                    serialHelper.sendTxt("ATO\r\n");
+                                    logListAdapter.addData(sDateFormat.format(new Date())+"Tx:==>"+"ATO\r\n");
+                                    flag=0;
+                                }
+                            } else if (edInput.getText().toString().equals("configuration")) {
+                                if (flag==1)//flag为1为配置配置模式
+                                {
+
+                                }
+                                else
+                                {
+                                    serialHelper.sendTxt("+++");
+                                    logListAdapter.addData(sDateFormat.format(new Date())+"Tx:==>"+"+++");
+                                    try {
+                                        Thread.sleep(3000);
+                                    }
+                                    catch (InterruptedException e)
+                                    {
+                                        e.printStackTrace();
+                                    }
+                                    serialHelper.sendTxt("atk");
+                                    logListAdapter.addData(sDateFormat.format(new Date())+"Tx:==>"+"atk");
+                                    try {
+                                        Thread.sleep(3000);
+                                    }
+                                    catch (InterruptedException e)
+                                    {
+                                        e.printStackTrace();
+                                    }
+                                    flag=1;
+                                }
+                                
+                            } else if (edInput.getText().toString().startsWith("sendmessage:"))
                             {
 
-                                serialHelper.sendTxt("");
-                            } else if (edInput.getText().toString().startsWith("AT"))
+                                if (flag==1)
+                                {
+
+                                }else
+                                {
+                                    serialHelper.sendTxt("+++");
+                                    logListAdapter.addData(sDateFormat.format(new Date())+"Tx:==>"+"+++");
+                                    try {
+                                        Thread.sleep(3000);
+                                    }
+                                    catch (InterruptedException e)
+                                    {
+                                        e.printStackTrace();
+                                    }
+                                    serialHelper.sendTxt("atk");
+                                    logListAdapter.addData(sDateFormat.format(new Date())+"Tx:==>"+"atk");
+                                    try {
+                                        Thread.sleep(3000);
+                                    }
+                                    catch (InterruptedException e)
+                                    {
+                                        e.printStackTrace();
+                                    }
+                                    flag=1;
+                                }
+                                serialHelper.sendTxt("AT+SMSEND="+"\""+edInput.getText().toString().substring(0x0C,0x17).trim()+"\""+","+"\""+edInput.getText().toString().substring(0x19).trim()+"\""+"\r\n");
+                                logListAdapter.addData(sDateFormat.format(new Date())+"Tx:==>"+"AT+SMSEND="+"\""+edInput.getText().toString().substring(0x0C,0x17).trim()+"\""+","+"\""+edInput.getText().toString().substring(0x18).trim()+"\""+"\r\n");
+                                try {
+                                    Thread.sleep(3000);
+                                }
+                                catch (InterruptedException e)
+                                {
+                                    e.printStackTrace();
+                                }
+                                serialHelper.sendTxt("ATO".concat("\r\n"));
+                                logListAdapter.addData(sDateFormat.format(new Date())+"Tx:==>"+"ATO".concat("\r\n"));
+                                try {
+                                    Thread.sleep(3000);
+                                }
+                                catch (InterruptedException e)
+                                {
+                                    e.printStackTrace();
+                                }
+                                flag=0;
+                            } else if (edInput.getText().toString().equals("yuanziyun:")) {
+
+                                if (flag==1)
+                                {
+
+                                }else
+                                {
+                                    serialHelper.sendTxt("+++");
+                                    logListAdapter.addData(sDateFormat.format(new Date())+"Tx:==>"+"+++");
+                                    try {
+                                        Thread.sleep(3000);
+                                    }
+                                    catch (InterruptedException e)
+                                    {
+                                        e.printStackTrace();
+                                    }
+                                    serialHelper.sendTxt("atk");
+                                    logListAdapter.addData(sDateFormat.format(new Date())+"Tx:==>"+"atk");
+                                    try {
+                                        Thread.sleep(3000);
+                                    }
+                                    catch (InterruptedException e)
+                                    {
+                                        e.printStackTrace();
+                                    }
+                                    flag=1;
+                                }
+                                serialHelper.sendTxt("AT+WORK=\"NET\"".concat("\r\n"));
+                                logListAdapter.addData(sDateFormat.format(new Date())+"Tx:==>"+"AT+WORK=\"NET\"".concat("\r\n"));
+                                try {
+                                    Thread.sleep(3000);
+                                }catch (InterruptedException e)
+                                {
+                                    e.printStackTrace();
+                                }
+                                serialHelper.sendTxt("AT+LINK1EN=\"ON\"".concat("\r\n"));
+                                logListAdapter.addData(sDateFormat.format(new Date())+"Tx:==>"+"AT+LINK1EN=\"ON\"".concat("\r\n"));
+                                try {
+                                    Thread.sleep(3000);
+                                }catch (InterruptedException e)
+                                {
+                                    e.printStackTrace();
+                                }
+                                serialHelper.sendTxt("AT+LINK1=\"TCP\",\"cloud.alientek.com\",\"59666\"".concat("\r\n"));
+                                logListAdapter.addData(sDateFormat.format(new Date())+"Tx:==>"+"AT+LINK1=\"TCP\",\"cloud.alientek.com\",\"59666\"".concat("\r\n"));
+                                try {
+                                    Thread.sleep(3000);
+                                }catch (InterruptedException e)
+                                {
+                                    e.printStackTrace();
+                                }
+                                serialHelper.sendTxt("AT+LINK1MD=\"LONG\"".concat("\r\n"));
+                                logListAdapter.addData(sDateFormat.format(new Date())+"Tx:==>"+"AT+LINK1MD=\"LONG\"".concat("\r\n"));
+                                try {
+                                    Thread.sleep(3000);
+                                }catch (InterruptedException e)
+                                {
+                                    e.printStackTrace();
+                                }
+                                serialHelper.sendTxt("AT+LINK1TM=\"5\"".concat("\r\n"));
+                                logListAdapter.addData(sDateFormat.format(new Date())+"Tx:==>"+"AT+LINK1TM=\"5\"".concat("\r\n"));
+                                try {
+                                    Thread.sleep(3000);
+                                }catch (InterruptedException e)
+                                {
+                                    e.printStackTrace();
+                                }
+                                serialHelper.sendTxt("AT+SVREN=\"ON\"".concat("\r\n"));
+                                logListAdapter.addData(sDateFormat.format(new Date())+"Tx:==>"+"AT+SVREN=\"ON\"".concat("\r\n"));
+                                try {
+                                    Thread.sleep(3000);
+                                }catch (InterruptedException e)
+                                {
+                                    e.printStackTrace();
+                                }
+                                serialHelper.sendTxt("AT+SVRNUM=\""+edInput.getText().toString().substring(0x0A).trim()+"\"".concat("\r\n"));
+                                logListAdapter.addData(sDateFormat.format(new Date())+"Tx:==>"+"AT+SVRNUM=\""+edInput.getText().toString().substring(0x0A).trim()+"\"".concat("\r\n"));
+                                try {
+                                    Thread.sleep(3000);
+                                }catch (InterruptedException e)
+                                {
+                                    e.printStackTrace();
+                                }
+                                serialHelper.sendTxt("AT+SVRKEY=\"12345678\"".concat("\r\n"));
+                                logListAdapter.addData(sDateFormat.format(new Date())+"Tx:==>"+"AT+SVRKEY=\"12345678\"".concat("\r\n"));
+                                try {
+                                    Thread.sleep(3000);
+                                }catch (InterruptedException e)
+                                {
+                                    e.printStackTrace();
+                                }
+                                serialHelper.sendTxt("ATO".concat("\r\n"));
+                                logListAdapter.addData(sDateFormat.format(new Date())+"Tx:==>"+"ATO".concat("\r\n"));
+                                try {
+                                    Thread.sleep(3000);
+                                }catch (InterruptedException e)
+                                {
+                                    e.printStackTrace();
+                                }
+                                flag=0;
+                            } else if (edInput.getText().toString().startsWith("AT")||edInput.getText().toString().startsWith("at"))
                             {
-                                serialHelper.sendTxt(edInput.getText().toString().concat("\n"));
-                                logListAdapter.addData(sDateFormat.format(new Date())+" Tx:==>"+edInput.getText().toString().concat("\n"));
+                                if (edInput.getText().toString().equals("ATO"))
+                                {
+                                    flag=0;
+                                }
+                                serialHelper.sendTxt(edInput.getText().toString().concat("\r\n"));
+                                logListAdapter.addData(sDateFormat.format(new Date())+" Tx:==>"+edInput.getText().toString().concat("\r\n"));
                             } else if (edInput.getText().toString().equals("+++")) {
                                 serialHelper.sendTxt(edInput.getText().toString());
                                 logListAdapter.addData(sDateFormat.format(new Date()) + " Tx:==>" + edInput.getText().toString());
@@ -356,6 +551,7 @@ public class FourGActivity extends AppCompatActivity {
                                 }
                                 serialHelper.sendTxt("atk");
                                 logListAdapter.addData(sDateFormat.format(new Date()) + " Tx:==>" + "atk");
+                                flag=1;
                             }else
                             {
                                 serialHelper.sendTxt(edInput.getText().toString());
@@ -375,8 +571,8 @@ public class FourGActivity extends AppCompatActivity {
                         if (serialHelper.isOpen()) {
                             if (edInput.getText().toString().startsWith("AT"))
                             {
-                                serialHelper.sendHex(edInput.getText().toString().concat("\n"));
-                                logListAdapter.addData(sDateFormat.format(new Date())+" Tx:==>" + edInput.getText().toString().concat("\n"));
+                                serialHelper.sendHex(edInput.getText().toString().concat("\r\n"));
+                                logListAdapter.addData(sDateFormat.format(new Date())+" Tx:==>" + edInput.getText().toString().concat("\r\n"));
                             } else if (edInput.getText().toString().equals("+++")) {
                                 serialHelper.sendHex(edInput.getText().toString());
                                 logListAdapter.addData(sDateFormat.format(new Date()) + " Tx:==>" + edInput.getText().toString());
