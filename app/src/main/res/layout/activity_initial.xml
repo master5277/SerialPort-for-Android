@@ -26,7 +26,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:background="@drawable/rectangle_shape"
-        android:text="串口通信"
+        android:text="串口/水声通信"
         android:textColor="@color/black"
         android:textSize="25sp"
         android:textStyle="bold"
@@ -63,7 +63,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.3"
+        app:layout_constraintHorizontal_bias="0.207"
         app:layout_constraintStart_toEndOf="@id/btn_4G"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.15" />

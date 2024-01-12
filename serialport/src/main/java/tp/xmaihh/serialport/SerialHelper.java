@@ -38,7 +38,6 @@ public abstract class SerialHelper {
         this.sPort = sPort;
         this.iBaudRate = iBaudRate;
     }
-
     //open()方法
     /*
     用于打开串口连接，实例化 SerialPort 对象，并启动读取和发送数据的线程。

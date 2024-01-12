@@ -347,26 +347,14 @@ public class MainActivity extends AppCompatActivity {
                 if (radioGroup.getCheckedRadioButtonId() == R.id.radioButton1) {
                     if (edInput.getText().toString().length() > 0) {
                         if (serialHelper.isOpen()) {
-                            if (edInput.getText().toString().startsWith("AT")||edInput.getText().toString().startsWith("at"))
+                            if (edInput.getText().toString().equals("CTI")||edInput.getText().toString().equals("cti"))
                             {
-                                serialHelper.sendTxt(edInput.getText().toString().concat("\r\n"));
-                                logListAdapter.addData(sDateFormat.format(new Date())+" Tx:==>"+edInput.getText().toString().concat("\r\n"));
-                            } else if (edInput.getText().toString().equals("+++")) {
-                                serialHelper.sendTxt(edInput.getText().toString());
-                                logListAdapter.addData(sDateFormat.format(new Date()) + " Tx:==>" + edInput.getText().toString());
-                                try {
-                                    Thread.sleep(1800);
-                                }
-                                catch (InterruptedException e)
-                                {
-                                    e.printStackTrace();
-                                }
-                                serialHelper.sendTxt("atk");
-                                logListAdapter.addData(sDateFormat.format(new Date()) + " Tx:==>" + "atk");
+                                serialHelper.sendTxt("24 4D 53 30 31 32 33 34 35 36 37 38 39 41 42 43 44 45 46 47 48 49 4A 4B 4C 4D 4E 4F 50 51 52 53 54 55 56 57 58 59 5A 61 62 63 64 65 66 67 68 69 6A 6B 6C 6D 6E 6F 70 71 72 73 74 75 76 77 78 79 7A 30 31 32 33 34 35 36 37 38 39 30 31 32 33 34 35 36 37 38 39 30 31 32 33 34");
+                                logListAdapter.addData(sDateFormat.format(new Date())+" Tx:==> "+"24 4D 53 30 \r\n31 32 33 34 \r\n35 36 37 38 \r\n39 41 42 43 \r\n44 45 46 47 \r\n48 49 4A 4B \r\n4C 4D 4E 4F \r\n50 51 52 53 \r\n54 55 56 57 \r\n58 59 5A 61 \r\n62 63 64 65 \r\n66 67 68 69 \r\n6A 6B 6C 6D \r\n6E 6F 70 71 \r\n72 73 74 75 \r\n76 77 78 79 \r\n7A 30 31 32 \r\n33 34 35 36 \r\n37 38 39 30 \r\n31 32 33 34 \r\n35 36 37 38 \r\n39 30 31 32 \r\n33 34");
                             }else
                             {
                                 serialHelper.sendTxt(edInput.getText().toString());
-                                logListAdapter.addData(sDateFormat.format(new Date()) + " Tx:==>" + edInput.getText().toString());
+                                logListAdapter.addData(sDateFormat.format(new Date())+ " Tx==>" + edInput.getText().toString());
                             }
                             if (logListAdapter.getData() != null && logListAdapter.getData().size() > 0) {
                                 recy.smoothScrollToPosition(logListAdapter.getData().size());//划到最底部，使得数据一直出现
@@ -380,26 +368,16 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     if (edInput.getText().toString().length() > 0) {
                         if (serialHelper.isOpen()) {
-                            if (edInput.getText().toString().startsWith("AT")||edInput.getText().toString().startsWith("at"))
+                            if (edInput.getText().toString().equals("CTI")||edInput.getText().toString().equals("cti"))//字符串匹配之后发送水声通信机通信测试命令。
                             {
-                                serialHelper.sendHex(edInput.getText().toString().concat("\r\n"));
-                                logListAdapter.addData(sDateFormat.format(new Date())+" Tx:==>" + edInput.getText().toString().concat("\r\n"));
-                            } else if (edInput.getText().toString().equals("+++")) {
+                                serialHelper.sendHex("24 4D 53 30 31 32 33 34 35 36 37 38 39 41 42 43 44 45 46 47 48 49 4A 4B 4C 4D 4E 4F 50 51 52 53 54 55 56 57 58 59 5A 61 62 63 64 65 66 67 68 69 6A 6B 6C 6D 6E 6F 70 71 72 73 74 75 76 77 78 79 7A 30 31 32 33 34 35 36 37 38 39 30 31 32 33 34 35 36 37 38 39 30 31 32 33 34");
+                                logListAdapter.addData(sDateFormat.format(new Date())+" Tx==> "+"24 4D 53 30 \r\n31 32 33 34 \r\n35 36 37 38 \r\n39 41 42 43 \r\n44 45 46 47 \r\n48 49 4A 4B \r\n4C 4D 4E 4F \r\n50 51 52 53 \r\n54 55 56 57 \r\n58 59 5A 61 \r\n62 63 64 65 \r\n66 67 68 69 \r\n6A 6B 6C 6D \r\n6E 6F 70 71 \r\n72 73 74 75 \r\n76 77 78 79 \r\n7A 30 31 32 \r\n33 34 35 36 \r\n37 38 39 30 \r\n31 32 33 34 \r\n35 36 37 38 \r\n39 30 31 32 \r\n33 34");
+                            } else if (edInput.getText().toString().equals("OFDM")) {
+                                serialHelper.sendHex("5A A5 38 01 FF");
+                                logListAdapter.addData(sDateFormat.format(new Date())+" Tx==> "+"5A A5 38 01 FF");
+                            } else{
                                 serialHelper.sendHex(edInput.getText().toString());
-                                logListAdapter.addData(sDateFormat.format(new Date()) + " Tx:==>" + edInput.getText().toString());
-                                try {
-                                    Thread.sleep(1800);
-                                }
-                                catch (InterruptedException e)
-                                {
-                                    e.printStackTrace();
-                                }
-                                serialHelper.sendHex("atk");
-                                logListAdapter.addData(sDateFormat.format(new Date()) + " Tx:==>" + "atk");
-                            }else
-                            {
-                                serialHelper.sendHex(edInput.getText().toString());
-                                logListAdapter.addData(sDateFormat.format(new Date()) + " Tx:==>" + edInput.getText().toString());
+                                logListAdapter.addData(sDateFormat.format(new Date())+" Tx==> "+edInput.getText().toString());
                             }
                             if (logListAdapter.getData() != null && logListAdapter.getData().size() > 0) {
                                 recy.smoothScrollToPosition(logListAdapter.getData().size());

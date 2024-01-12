@@ -366,7 +366,7 @@ public class FourGActivity extends AppCompatActivity {
                                     serialHelper.sendTxt("+++");
                                     logListAdapter.addData(sDateFormat.format(new Date())+"Tx:==>"+"+++");
                                     try {
-                                        Thread.sleep(3000);
+                                        Thread.sleep(1800);
                                     }
                                     catch (InterruptedException e)
                                     {
@@ -375,7 +375,7 @@ public class FourGActivity extends AppCompatActivity {
                                     serialHelper.sendTxt("atk");
                                     logListAdapter.addData(sDateFormat.format(new Date())+"Tx:==>"+"atk");
                                     try {
-                                        Thread.sleep(3000);
+                                        Thread.sleep(1800);
                                     }
                                     catch (InterruptedException e)
                                     {
@@ -395,7 +395,7 @@ public class FourGActivity extends AppCompatActivity {
                                     serialHelper.sendTxt("+++");
                                     logListAdapter.addData(sDateFormat.format(new Date())+"Tx:==>"+"+++");
                                     try {
-                                        Thread.sleep(3000);
+                                        Thread.sleep(1800);
                                     }
                                     catch (InterruptedException e)
                                     {
@@ -404,7 +404,7 @@ public class FourGActivity extends AppCompatActivity {
                                     serialHelper.sendTxt("atk");
                                     logListAdapter.addData(sDateFormat.format(new Date())+"Tx:==>"+"atk");
                                     try {
-                                        Thread.sleep(3000);
+                                        Thread.sleep(1800);
                                     }
                                     catch (InterruptedException e)
                                     {
@@ -441,7 +441,7 @@ public class FourGActivity extends AppCompatActivity {
                                     serialHelper.sendTxt("+++");
                                     logListAdapter.addData(sDateFormat.format(new Date())+"Tx:==>"+"+++");
                                     try {
-                                        Thread.sleep(3000);
+                                        Thread.sleep(1800);
                                     }
                                     catch (InterruptedException e)
                                     {
@@ -450,7 +450,7 @@ public class FourGActivity extends AppCompatActivity {
                                     serialHelper.sendTxt("atk");
                                     logListAdapter.addData(sDateFormat.format(new Date())+"Tx:==>"+"atk");
                                     try {
-                                        Thread.sleep(3000);
+                                        Thread.sleep(1800);
                                     }
                                     catch (InterruptedException e)
                                     {
